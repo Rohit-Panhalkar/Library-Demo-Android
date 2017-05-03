@@ -23,8 +23,8 @@ import com.google.android.gms.common.api.GoogleApiClient;
 
 public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
-    GoogleApiClient mGoogleApiClient;
-    private int RC_SIGN_IN =100;
+    public static GoogleApiClient mGoogleApiClient;
+    public static int RC_SIGN_IN =100;
     int a,b = 0;
 
     @Override
@@ -42,7 +42,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
 
     }
 
-    private void InitializeGooglePlusApi(LogDemo logDemo) {
+    public void InitializeGooglePlusApi(LogDemo logDemo) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
@@ -53,7 +53,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
                 .build();
     }
 
-    private void gmailIntegration() {
+    public void gmailIntegration() {
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
         startActivityForResult(signInIntent, RC_SIGN_IN);
 //
