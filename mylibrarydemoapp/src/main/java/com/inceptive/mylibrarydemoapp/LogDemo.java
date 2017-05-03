@@ -62,7 +62,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         shareTextToMedia((Activity) context,text);
     }
 
-    private void shareTextToMedia(Activity context, String text) {
+    public static void shareTextToMedia(Activity context, String text) {
         Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
         sharingIntent.setType("text/plain");
         sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
