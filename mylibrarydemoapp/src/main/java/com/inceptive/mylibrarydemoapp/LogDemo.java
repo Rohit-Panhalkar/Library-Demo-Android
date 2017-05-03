@@ -46,24 +46,36 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
     public static String selectedImagePath;
     GoogleSignInResult result;
     public static Bitmap bitmap;
-    public static Uri selectedImage;
-
+    public static Uri uri;
+    public static String text;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gmail_activity);
 
-//        context = LogDemo.this;
         sum(a,b);
         handleSignInResult(result);
-//        initializeGoogleAPI((Activity) context);
 
         alertDialogBox(context);
         camera(context);
+        shareImageToMedia((Activity) context,uri);
+        shareTextToMedia((Activity) context,text);
     }
 
+    private void shareTextToMedia(Activity context, String text) {
+        Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
+        sharingIntent.setType("text/plain");
+        sharingIntent.putExtra(Intent.EXTRA_TEXT, text);
+        context.startActivity(Intent.createChooser(sharingIntent, "Share via"));
+    }
 
-
+    public static void shareImageToMedia(Activity context,Uri uri) {
+        Intent shareIntent = new Intent(android.content.Intent.ACTION_SEND);
+        shareIntent.setType("image/*");
+        shareIntent.putExtra(Intent.EXTRA_STREAM, uri);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        context.startActivity(Intent.createChooser(shareIntent, "Share via"));
+    }
 
 
     public static void camera(final Context context) {
