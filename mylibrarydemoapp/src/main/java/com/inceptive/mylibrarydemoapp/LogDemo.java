@@ -220,7 +220,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
 //                Bitmap thumbnail = (BitmapFactory.decodeFile(selectedImagePath));
 //                profileimage.setImageBitmap(thumbnail);
 
-        } else if (requestCode == CAMERA_REQUEST && requestCode == Activity.RESULT_OK ) {
+        } else if (requestCode == CAMERA_REQUEST ) {
 
             getbitmapImage();
 
