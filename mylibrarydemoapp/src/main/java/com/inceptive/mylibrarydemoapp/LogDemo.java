@@ -60,7 +60,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         camera(context);
     }
 
-    public static void camera(Context context) {
+    public static void camera(final Context context) {
                 final CharSequence[] items = { "Take Photo", "Choose from Library",
                         "Cancel" };
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -69,9 +69,9 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
                         if (items[item].equals("Take Photo")) {
-                            cameraIntent((LogDemo) LogDemo.context);
+                            cameraIntent((Activity) context);
                         } else if (items[item].equals("Choose from Library")) {
-                            galleryIntent((LogDemo) LogDemo.context);
+                            galleryIntent((Activity) context);
                         } else if (items[item].equals("Cancel")) {
                             dialog.dismiss();
                         }
@@ -80,7 +80,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
                 builder.show();
             }
 
-    private static void galleryIntent(LogDemo context) {
+    private static void galleryIntent(Activity context) {
         Intent galleryIntent = new Intent(Intent.ACTION_PICK,MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
         context.startActivityForResult(galleryIntent, 2);
     }
