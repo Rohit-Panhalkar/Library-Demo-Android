@@ -1,5 +1,6 @@
 package com.inceptive.mylibrarydemoapp;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -25,8 +26,9 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
 
     public static GoogleApiClient mGoogleApiClient;
     public static int RC_SIGN_IN =100;
-
+    public static Context context;
     int a,b = 0;
+    GoogleSignInResult result;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -34,31 +36,9 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         setContentView(R.layout.gmail_activity);
 
         sum(a,b);
+        handleSignInResult(result);
 
 
-        InitializeGooglePlusApi(LogDemo.this);
-        gmailIntegration(LogDemo.this);
-
-
-
-    }
-
-    public static void InitializeGooglePlusApi(LogDemo logDemo) {
-        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestEmail()
-                .build();
-
-        mGoogleApiClient = new GoogleApiClient.Builder(logDemo)
-                .enableAutoManage(logDemo /* FragmentActivity */, logDemo /* OnConnectionFailedListener */)
-                .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
-                .build();
-    }
-
-    public static void gmailIntegration(LogDemo logDemo) {
-
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        logDemo.startActivityForResult(signInIntent, RC_SIGN_IN);
-//
     }
 
 
@@ -70,15 +50,6 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
     }
 
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == RC_SIGN_IN) {
-            GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
-            handleSignInResult(result);
-        }
-    }
 
     public static void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
