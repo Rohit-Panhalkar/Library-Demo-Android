@@ -57,16 +57,12 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         sum(a,b);
         handleSignInResult(result);
 //        initializeGoogleAPI((Activity) context);
-        gmailLogin((Activity) context);
 
         alertDialogBox(context);
         camera(context);
     }
 
-    public static void gmailLogin(Activity context) {
-        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        context.startActivityForResult(signInIntent, RC_SIGN_IN);
-    }
+
 
 
 
