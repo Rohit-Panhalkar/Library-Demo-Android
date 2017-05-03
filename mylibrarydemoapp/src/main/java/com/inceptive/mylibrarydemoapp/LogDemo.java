@@ -46,6 +46,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
     public static String selectedImagePath;
     GoogleSignInResult result;
     public static Bitmap bitmap;
+    public static Uri selectedImage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -203,4 +204,35 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
     public static String getSelectedImage() {
         return selectedImagePath;
     }
+
+    public static void getImageFromResultCode(int requestCode,Context context){
+        if (requestCode == 2) {
+
+
+            String[] filePath = {MediaStore.Images.Media.DATA};
+            Cursor c = context.getContentResolver().query(selectedImage, filePath, null, null, null);
+            c.moveToFirst();
+            int columnIndex = c.getColumnIndex(filePath[0]);
+            selectedImagePath = c.getString(columnIndex);
+
+            getSelectedImage();
+            c.close();
+//                Bitmap thumbnail = (BitmapFactory.decodeFile(selectedImagePath));
+//                profileimage.setImageBitmap(thumbnail);
+
+        } else if (requestCode == CAMERA_REQUEST && requestCode == Activity.RESULT_OK ) {
+
+            getbitmapImage();
+
+            getbase64toString(bitmap);
+
+
+
+            //  piccaptureimg.setImageBitmap(BitmapFactory.decodeFile(result));;
+
+        }
+
     }
+
+    }
+
