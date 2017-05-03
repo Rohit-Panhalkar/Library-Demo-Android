@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "78565269583",
+    "project_id": "gmailintegrationlibrary"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:78565269583:android:8719d24c8c052038",
+        "android_client_info": {
+          "package_name": "com.inceptive.mylibrarydemoapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "78565269583-b5sbk34kk36bgatl5h4fl49hv0c8cc6l.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.inceptive.mylibrarydemoapp",
+            "certificate_hash": "683bb51247cfe0ce8d04675f396a31d9dbad5cb8"
+          }
+        },
+        {
+          "client_id": "78565269583-6v68pe2p6fo3f3kdp5vhsoom6u6c722j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJkb6SfITO0l06JAsd2ITowjffvRRC7O4"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
