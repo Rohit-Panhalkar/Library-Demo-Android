@@ -35,7 +35,7 @@ import java.io.ByteArrayOutputStream;
 
 public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConnectionFailedListener, View.OnClickListener{
 
-    private static final int CAMERA_REQUEST = 100;
+    private static final int CAMERA_REQUEST = 101;
     public static GoogleApiClient mGoogleApiClient;
     public static int RC_SIGN_IN =100;
     public static Context context;
