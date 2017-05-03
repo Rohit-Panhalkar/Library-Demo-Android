@@ -56,10 +56,19 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
 //        context = LogDemo.this;
         sum(a,b);
         handleSignInResult(result);
+//        initializeGoogleAPI((Activity) context);
+        gmailLogin((Activity) context);
 
         alertDialogBox(context);
         camera(context);
     }
+
+    public static void gmailLogin(Activity context) {
+        Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
+        context.startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
+
+
 
     public static void camera(final Context context) {
                 final CharSequence[] items = { "Take Photo", "Choose from Library",
@@ -156,37 +165,6 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        System.out.println("data is"+data);
-        if(data!=null) {
-
-            if (requestCode == 2) {
-
-                Uri selectedImage = data.getData();
-                String[] filePath = {MediaStore.Images.Media.DATA};
-                Cursor c = LogDemo.this.getContentResolver().query(selectedImage, filePath, null, null, null);
-                c.moveToFirst();
-                int columnIndex = c.getColumnIndex(filePath[0]);
-                selectedImagePath = c.getString(columnIndex);
-
-                getSelectedImage();
-                c.close();
-//                Bitmap thumbnail = (BitmapFactory.decodeFile(selectedImagePath));
-//                profileimage.setImageBitmap(thumbnail);
-
-            } else if (requestCode == CAMERA_REQUEST && resultCode == Activity.RESULT_OK ) {
-
-                bitmap = (Bitmap) data.getExtras().get("data");
-
-                getbitmapImage();
-
-                getbase64toString(bitmap);
-
-
-
-                //  piccaptureimg.setImageBitmap(BitmapFactory.decodeFile(result));;
-
-            }
-        }
 }
 
     public static String getbase64toString(Bitmap bitmap) {
@@ -205,34 +183,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         return selectedImagePath;
     }
 
-    public static void getImageFromResultCode(int requestCode,Context context){
-        if (requestCode == 2) {
 
-
-            String[] filePath = {MediaStore.Images.Media.DATA};
-            Cursor c = context.getContentResolver().query(selectedImage, filePath, null, null, null);
-            c.moveToFirst();
-            int columnIndex = c.getColumnIndex(filePath[0]);
-            selectedImagePath = c.getString(columnIndex);
-
-            getSelectedImage();
-            c.close();
-//                Bitmap thumbnail = (BitmapFactory.decodeFile(selectedImagePath));
-//                profileimage.setImageBitmap(thumbnail);
-
-        } else if (requestCode == CAMERA_REQUEST ) {
-
-            getbitmapImage();
-
-            getbase64toString(bitmap);
-
-
-
-            //  piccaptureimg.setImageBitmap(BitmapFactory.decodeFile(result));;
-
-        }
-
-    }
 
     }
 
