@@ -48,6 +48,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
     public static Bitmap bitmap;
     public static Uri uri;
     public static String text;
+    public static String msg;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,7 +57,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         sum(a,b);
         handleSignInResult(result);
 
-        alertDialogBox(context);
+        alertDialogBox(context,msg);
         camera(context);
         shareImageToMedia((Activity) context,uri);
         shareTextToMedia((Activity) context,text);
@@ -107,9 +108,9 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         context.startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), CAMERA_REQUEST);
     }
 
-    public static void alertDialogBox(Context context) {
+    public static void alertDialogBox(Context context, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
-        builder.setMessage("Login Successfully");
+        builder.setMessage(msg);
         builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
