@@ -28,6 +28,10 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
     public static int RC_SIGN_IN =100;
     public static Context context;
     int a,b = 0;
+    public static String name;
+    public static String email;
+    public static String userid;
+
     GoogleSignInResult result;
 
     @Override
@@ -55,13 +59,13 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
-            String name = acct.getDisplayName();
-            String email = acct.getEmail();
-            String userid = acct.getId();
+            name = acct.getDisplayName();
+            email = acct.getEmail();
+            userid = acct.getId();
 
-            getusername(name);
-            getuseremail(email);
-            getuserid(userid);
+            getusername();
+            getuseremail();
+            getuserid();
 
 //            AlertDialog.Builder builder = new AlertDialog.Builder(LogDemo.this);
 //            builder.setMessage("Login Successfully");
@@ -78,15 +82,15 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         }
     }
 
-    public static String getusername(String name) {
+    public static String getusername() {
         return name;
     }
 
-    public static String getuseremail(String email) {
+    public static String getuseremail() {
         return email;
     }
 
-    public static String getuserid(String userid) {
+    public static String getuserid() {
         return userid;
     }
 
