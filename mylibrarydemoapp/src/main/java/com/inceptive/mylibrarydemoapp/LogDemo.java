@@ -95,7 +95,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         context.startActivityForResult(new Intent(MediaStore.ACTION_IMAGE_CAPTURE), CAMERA_REQUEST);
     }
 
-    private void alertDialogBox(Context context) {
+    public static void alertDialogBox(Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage("Login Successfully");
         builder.setPositiveButton("Okay", new DialogInterface.OnClickListener() {
@@ -104,6 +104,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
                 dialog.dismiss();
             }
         });
+        builder.show();
     }
 
 
