@@ -52,15 +52,15 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         super.onCreate(savedInstanceState);
         setContentView(R.layout.gmail_activity);
 
-        context = LogDemo.this;
+//        context = LogDemo.this;
         sum(a,b);
         handleSignInResult(result);
 
         alertDialogBox(context);
-        camera();
+        camera(context);
     }
 
-    public static void camera() {
+    public static void camera(Context context) {
                 final CharSequence[] items = { "Take Photo", "Choose from Library",
                         "Cancel" };
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -69,9 +69,9 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
                     @Override
                     public void onClick(DialogInterface dialog, int item) {
                         if (items[item].equals("Take Photo")) {
-                            cameraIntent((LogDemo) context);
+                            cameraIntent((LogDemo) LogDemo.context);
                         } else if (items[item].equals("Choose from Library")) {
-                            galleryIntent((LogDemo) context);
+                            galleryIntent((LogDemo) LogDemo.context);
                         } else if (items[item].equals("Cancel")) {
                             dialog.dismiss();
                         }
