@@ -25,6 +25,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
 
     public static GoogleApiClient mGoogleApiClient;
     public static int RC_SIGN_IN =100;
+
     int a,b = 0;
 
     @Override
@@ -36,26 +37,27 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
 
 
         InitializeGooglePlusApi(LogDemo.this);
-        gmailIntegration();
+        gmailIntegration(LogDemo.this);
 
 
 
     }
 
-    public void InitializeGooglePlusApi(LogDemo logDemo) {
+    public static void InitializeGooglePlusApi(LogDemo logDemo) {
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestEmail()
                 .build();
 
         mGoogleApiClient = new GoogleApiClient.Builder(logDemo)
-                .enableAutoManage(this /* FragmentActivity */, this /* OnConnectionFailedListener */)
+                .enableAutoManage(logDemo /* FragmentActivity */, logDemo /* OnConnectionFailedListener */)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
     }
 
-    public void gmailIntegration() {
+    public static void gmailIntegration(LogDemo logDemo) {
+
         Intent signInIntent = Auth.GoogleSignInApi.getSignInIntent(mGoogleApiClient);
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+        logDemo.startActivityForResult(signInIntent, RC_SIGN_IN);
 //
     }
 
@@ -78,7 +80,7 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         }
     }
 
-    private void handleSignInResult(GoogleSignInResult result) {
+    public static void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess()) {
             // Signed in successfully, show authenticated UI.
             GoogleSignInAccount acct = result.getSignInAccount();
@@ -105,14 +107,15 @@ public class LogDemo extends AppCompatActivity implements GoogleApiClient.OnConn
         }
     }
 
-    private void getusername(String name) {
+    public static String getusername(String name) {
+        return name;
     }
 
-    private String getuseremail(String email) {
+    public static String getuseremail(String email) {
         return email;
     }
 
-    private String getuserid(String userid) {
+    public static String getuserid(String userid) {
         return userid;
     }
 
